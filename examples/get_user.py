@@ -1,7 +1,6 @@
 from typing import NamedTuple
 
-from wotbwrapper import WotbClient
-from wotbwrapper.User import User
+from wotbwrapper import WotbClient, User
 
 wotbclient = WotbClient(application_id='anything')
 
