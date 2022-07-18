@@ -6,7 +6,7 @@ __all__ = ('User')
 T = TypeVar('T')
 
 class Timestamp(Generic[T]):
-	pass
+	...
 
 
 class BaseUser:
