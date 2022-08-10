@@ -1,0 +1,13 @@
+[flake8]
+
+per-file-ignores = 
+	onewot/__init__.py:             F401,F403
+	onewot/api/__init__.py:         F401,F403
+	onewot/impl/__init__.py:        F401,F403
+	onewot/internal/__init__.py:    F401,F403
+
+max-function-length = 120
+max-line-length = 120
+show_source = False
+
+accept-encodings = utf-8
