@@ -32,6 +32,7 @@ if typing.TYPE_CHECKING:
     from onewot import users
     from onewot import clans
     from onewot import tournaments
+    from onewot import tanks
     from onewot import snowflakes
     from onewot import urls
     from onewot.internal import data_binding
@@ -48,6 +49,7 @@ class HTTPClient(abc.ABC):
         params: dict[str, typing.Any]
     ) -> typing.Optional[data_binding.JSONObject]:
         """Method for making HTTP-requests.
+
         Parameters
         ----------
         method : builins.str
@@ -56,6 +58,7 @@ class HTTPClient(abc.ABC):
             Path to API method.
         params : builtins.dict[builtins.str, typing.Any]
             Dict of specified parameters for request.
+
         Returns
         -------
         onewot.internal.data_binding.JSONObject
@@ -65,10 +68,12 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def _create_params(self, **kwargs: typing.Any) -> dict[str, typing.Any]:
         """Create parameters for HTTP-request.
+
         Parameters
         ----------
         kwargs : typing.Any
             Parameters for HTTP request body.
+
         Returns
         -------
         builtins.dict[builtins.str, typing.Any]
@@ -78,12 +83,14 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def _get_entity_id(self, entity_type: str, entity_name: str) -> snowflakes.Snowflake:
         """Fetch entity by his name.
+
         Parameters
         ----------
         entity_type : builtins.str
             One of entities of entity factory.
         entity_name : builtins.str
             Specified entity name.
+
         Returns
         -------
         onewot.snowflakes.Snowflake
@@ -99,6 +106,7 @@ class HTTPClient(abc.ABC):
         **params: typing.Any
     ) -> data_binding.JSONObject:
         """Get payload data of entity from API.
+
         Parameters
         ----------
         entity_id : snowflakes.Snowflake
@@ -109,10 +117,12 @@ class HTTPClient(abc.ABC):
             Fetch user achievements or not. Defaults to `builtins.False`
         params : typing.Any
             Parameters for HTTP request body.
+
         Returns
         -------
         onewot.internal.data_binding.JSONObject
             JSON response from API request.
+
         Raises
         ------
         onewot.errors.EntityNotFound
@@ -121,11 +131,13 @@ class HTTPClient(abc.ABC):
 
     @abc.abstractmethod
     def fetch_user(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.User:
-        """Fetch user by his ID or name.
+        """Fetch user entity by his ID or name.
+
         Parameters
         ----------
         user : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             User to fetch.
+
         Returns
         -------
         onewot.users.User
@@ -134,11 +146,13 @@ class HTTPClient(abc.ABC):
 
     @abc.abstractmethod
     def fetch_clan(self, clan: typing.Union[str, snowflakes.Snowflake]) -> clans.Clan:
-        """Fetch clan by his ID or name.
+        """Fetch clan entity by his ID or name.
+
         Parameters
         ----------
         clan : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             Clan to fetch.
+
         Returns
         -------
         onewot.clans.Clan
@@ -148,10 +162,12 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_user_achievements(self, user: typing.Union[str, snowflakes.Snowflake]) -> typing.Type[object]:
         """Fetch user achievements.
+
         Parameters
         ----------
         user : typing.Union[builtins.str, snowflakes.Snowflake]
             User to fetch achievements.
+
         Returns
         -------
         typing.Type[object]
@@ -160,11 +176,13 @@ class HTTPClient(abc.ABC):
 
     @abc.abstractmethod
     def fetch_clan_member(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.ClanMember:
-        """Fetch clan member by his ID or name.
+        """Fetch clan member entity by his ID or name.
+
         Parameters
         ----------
         user : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             User to fetch.
+
         Returns
         -------
         onewot.users.ClanMember
@@ -178,7 +196,8 @@ class HTTPClient(abc.ABC):
         page_number: typing.Optional[int] = None,
         limit: typing.Optional[int] = None
     ) -> typing.Optional[tuple[tournaments.Tournament]]:
-        """Fetch tournaments.
+        """Fetch tournament entities.
+
         Parameters
         ----------
         tournament_name : typing.Optional[builtins.str]
@@ -187,6 +206,7 @@ class HTTPClient(abc.ABC):
             Page for search. Defaults to `builtins.None`.
         limit : typing.Optional[builtins.int]
             Tournament search limit. Defaults to `builtins.None`.
+
         Returns
         -------
         typing.Optional[builtins.tuple[onewot.tournaments.Tournament]]
@@ -196,7 +216,7 @@ class HTTPClient(abc.ABC):
 
     @abc.abstractmethod
     def fetch_users_by_id(self, user_ids: typing.Iterable[snowflakes.Snowflake]) -> tuple[users.User]:
-        """Fetch users by their ID.
+        """Fetch user entities by their ID.
         Parameters
         ----------
         user_ids : typing.Iterable[onewot.snowflake.Snowflake]
@@ -209,7 +229,7 @@ class HTTPClient(abc.ABC):
 
     @abc.abstractmethod
     def fetch_tournament(self, tournament: typing.Union[str, snowflakes.Snowflake]) -> tournaments.Tournament:
-        """Fetch tournament by his ID or name.
+        """Fetch tournament entity by his ID or name.
         Parameters
         ----------
         tournament : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
@@ -218,4 +238,18 @@ class HTTPClient(abc.ABC):
         -------
         onewot.tournaments.Tournament
             Deserialized tournament object.
+        """
+
+    @abc.abstractmethod
+    def fetch_tank(self, tank: snowflakes.Snowflake) -> tanks.Tank:
+        """Fetch tank entity by ID.
+
+        Parameters
+        ----------
+        tank : onewot.snowflakes.Snowflake
+            Tank to fetch.
+        Returns
+        -------
+        onewot.tanks.Tank
+            Deserialized tank object.
         """

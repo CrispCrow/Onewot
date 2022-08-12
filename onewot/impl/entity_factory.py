@@ -31,6 +31,7 @@ from onewot import clans as clan_models
 from onewot import users as user_models
 from onewot import achievements as achievement_models
 from onewot import tournaments as tournament_models
+from onewot import tanks as tank_models
 from onewot import snowflakes
 from onewot.api import entity_factory
 from onewot.internal import unix
@@ -179,4 +180,61 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
                     payload['winner_award']['currency']
                 ) if payload['winner_award']['currency'] else None
             )
+        )
+
+    def deserialize_tank(self, payload: data_binding.JSONObject) -> tank_models.Tank:
+        return tank_models.Tank(
+            id=snowflakes.Snowflake(payload['tank_id']),
+            name=payload['name'],
+            description=payload['description'],
+            engines=payload['engines'],
+            guns=payload['guns'],
+            is_premium=payload['is_premium'],
+            nation=payload['nation'],
+            next_tanks=payload['next_tanks'],
+            prices_xp=payload['prices_xp'],
+            suspensions=payload['suspensions'],
+            tier=payload['tier'],
+            turrets=payload['turrets'],
+            type=payload['type'],
+            cost=tank_models.TankCost(
+                price_credit=payload['cost']['price_credit'],
+                price_gold=payload['cost']['price_gold']
+            ) if payload['cost'] is not None else None,
+            default_profile=self.deserialize_tank_default_profile(payload['default_profile']),
+            images=tank_models.TankImage(**payload['images']),
+        )
+
+    def deserialize_tank_default_profile(self, payload: data_binding.JSONObject) -> tank_models.DefaultProfile:
+        return tank_models.DefaultProfile(
+            battle_level_range_max=payload['battle_level_range_max'],
+            battle_level_range_min=payload['battle_level_range_min'],
+            engine_id=snowflakes.Snowflake(payload['engine_id']),
+            firepower=payload['firepower'],
+            gun_id=snowflakes.Snowflake(payload['gun_id']),
+            hp=payload['hp'],
+            hull_hp=payload['hull_hp'],
+            hull_weight=payload['hull_weight'],
+            is_default=payload['is_default'],
+            maneuverability=payload['maneuverability'],
+            max_ammo=payload['max_ammo'],
+            max_weight=payload['max_weight'],
+            profile_id=payload['profile_id'],
+            protection=payload['protection'],
+            shot_efficiency=payload['shot_efficiency'],
+            signal_range=payload['signal_range'],
+            speed_backward=payload['speed_backward'],
+            speed_forward=payload['speed_forward'],
+            suspension_id=snowflakes.Snowflake(payload['suspension_id']),
+            turret_id=snowflakes.Snowflake(payload['turret_id']),
+            weight=payload['weight'],
+            armor=tank_models.DefaultArmor(
+                hull=tank_models.ArmorHull(**payload['armor']['hull']),
+                turret=tank_models.ArmorTurret(**payload['armor']['turret'])
+            ),
+            engine=tank_models.DefaultEngine(**payload['engine']),
+            gun=tank_models.DefaultGun(**payload['gun']),
+            shells=tuple(tank_models.DefaultShell(**shell) for shell in payload['shells']),
+            suspension=tank_models.DefaultSuspension(**payload['suspension']),
+            turret=tank_models.DefaultTurret(**payload['turret'])
         )

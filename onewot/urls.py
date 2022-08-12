@@ -67,6 +67,9 @@ TOURNAMENT_LIST_PATH: typing.Final[str] = BASE_URL + '/tournaments/list/'
 TOURNAMENT_INFO_PATH: typing.Final[str] = BASE_URL + '/tournaments/info/'
 """Path to specified tournament info API method."""
 
+TANK_INFO_PATH: typing.Final[str] = BASE_URL + '/encyclopedia/vehicles/'
+"""Path to specified tank info API method."""
+
 API_METHODS: typing.Final[dict[ApiMethod, str]] = {
     'account_info': ACCOUNT_INFO_PATH,
     'account_list': ACCOUNT_LIST_PATH,
@@ -75,7 +78,8 @@ API_METHODS: typing.Final[dict[ApiMethod, str]] = {
     'clan_list': CLAN_LIST_PATH,
     'clan_member': CLAN_MEMBER_PATH,
     'tournament_info': TOURNAMENT_INFO_PATH,
-    'tournament_list': TOURNAMENT_LIST_PATH
+    'tournament_list': TOURNAMENT_LIST_PATH,
+    'tank_info': TANK_INFO_PATH
 }
 """Dict of API methods."""
 
@@ -91,3 +95,4 @@ class ApiMethod(str, enum.Enum):
     CLAN_MEMBER: typing.Final[str] = 'clan_member'
     TOURNAMENT_INFO: typing.Final[str] = 'tournament_info'
     TOURNAMENT_LIST: typing.Final[str] = 'tournament_list'
+    TANK_INFO: typing.Final[str] = 'tank_info'

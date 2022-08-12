@@ -39,16 +39,20 @@ if typing.TYPE_CHECKING:
 class WOTBClient:
     """WotBlitz API client.
     This is the class, you will want to create WotBlitz client.
+
     Parameters
     ----------
     application_id : builtins.str
         Application ID of WotBlitz API applications.
+
     Example
     -------
     Setting up client:
     ```py
     import os
+
     import onewot
+
     client = onewot.WOTBClient(os.environ["APPLICATION_ID"])
     ```
     """
@@ -61,10 +65,12 @@ class WOTBClient:
 
     def fetch_user(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.User:
         """Fetch a user by name or identificator.
+
         Parameters
         ----------
         user : typing.Union[builtins.str, snowflakes.Snowflake]
             A user to fetch.
+
         Returns
         -------
         users.User
@@ -74,10 +80,12 @@ class WOTBClient:
 
     def fetch_clan(self, clan: typing.Union[str, snowflakes.Snowflake]) -> clans.Clan:
         """Fetch clan by name or identificator.
+
         Parameters
         ----------
         clan : typing.Union[builtins.str snowflakes.Snowflake]
             A clan to fetch.
+
         Returns
         -------
         clans.Clan
@@ -87,10 +95,12 @@ class WOTBClient:
 
     def fetch_clan_member(self, member: typing.Union[str, snowflakes.Snowflake]) -> users.ClanMember:
         """Fetch clan member by name or identificator.
+
         Parameters
         ----------
         member : typing.Union[builtins.str, snowflakes.Snowflake]
             A clan member to fetch.
+
         Returns
         -------
         users.ClanMember
@@ -105,6 +115,7 @@ class WOTBClient:
         limit: typing.Optional[int] = None
     ) -> typing.Optional[tuple[tournaments.Tournament]]:
         """Fetch upcoming, finished and running tournaments.
+
         Parameters
         ----------
         tournament_name : typing.Optional[builtins.str]
@@ -114,6 +125,7 @@ class WOTBClient:
         limit : typing.Optional[builtins.int]
             Tournament search limit. Maximum value is 100.
             Defaults to `builtins.None`.
+
         Returns
         -------
         builtins.tuple[tournaments.Tournament]
@@ -122,11 +134,13 @@ class WOTBClient:
         return self._http.fetch_tournaments(limit=limit)
 
     def fetch_users_by_id(self, user_ids: typing.Iterable[snowflakes.Snowflake]) -> tuple[users.User]:
-        """Fetch users by their ID.
+        """Fetch users by their identificators.
+
         Parameters
         ----------
         user_ids : typing.Iterable[snowflakes.Snowflakes]
             An iterable object of user IDs.
+
         Returns
         -------
         builtins.tuple[users.User]
@@ -136,13 +150,30 @@ class WOTBClient:
 
     def fetch_tournament(self, tournament: typing.Union[str, snowflakes.Snowflake]) -> tournaments.Tournament:
         """Fetch tournament by name or identificator.
+
         Parameters
         ----------
         tournament : typing.Union[builtins.str, snowflakes.Snowflake]
             Tournament to fetch.
+
         Returns
         -------
         tournaments.Tournament
             Deserialized tournament object.
         """
         return self._http.fetch_tournament(tournament)
+
+    def fetch_tank(self, tank: snowflakes.Snowflake) -> tanks.Tank:
+        """Fetch tank by identificator.
+
+        Parameters
+        ----------
+        tank : sowflakes.Snowflake
+            Tank to fetch.
+
+        Returns
+        -------
+        tanks.Tank
+            Deserialized tank object.
+        """
+        return self._http.fetch_tank(tank)

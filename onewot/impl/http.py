@@ -41,6 +41,7 @@ if typing.TYPE_CHECKING:
     from onewot import users
     from onewot import clans
     from onewot import tournaments
+    from onewot import tanks
 
 
 class HTTPClientImpl(http.HTTPClient):
@@ -196,3 +197,11 @@ class HTTPClientImpl(http.HTTPClient):
             tournament_id=tournament
         )
         return self._entity_factory.deserialize_tournament(payload)
+
+    def fetch_tank(self, tank: snowflakes.Snowflake) -> tanks.Tank:
+        payload = self._get_payload(
+            entity_id=tank,
+            api_method='tank_info',
+            tank_id=tank
+        )
+        return self._entity_factory.deserialize_tank(payload)
