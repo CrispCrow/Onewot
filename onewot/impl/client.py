@@ -35,6 +35,7 @@ if typing.TYPE_CHECKING:
     from onewot import tournaments
     from onewot import tanks
     from onewot import snowflakes
+    from onewot.internal import data_binding
 
 
 class WOTBClient:

@@ -65,7 +65,7 @@ class HTTPClientImpl(http.HTTPClient):
 
     def __init__(self, application_id: str, language: data_binding.Language) -> None:
         self._application_id: str = application_id
-        self._language: Language = language
+        self._language: data_binding.Language = language
         self._session: sessions.FuturesSession = sessions.FuturesSession()
         self._error_handler: error_handlers.ErrorHandlerImpl = error_handlers.ErrorHandlerImpl()
         self._entity_factory: entity_factory.EntityFactoryImpl = entity_factory.EntityFactoryImpl()
