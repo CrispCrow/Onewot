@@ -25,7 +25,9 @@ from .users import *
 from .clans import *
 from .achievements import *
 from .tournaments import *
+from .tanks import *
 from .snowflakes import *
 from .urls import *
 from .errors import *
+from onewot.internal.data_binding import Language
 from onewot.impl import WOTBClient

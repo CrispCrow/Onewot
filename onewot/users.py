@@ -57,13 +57,9 @@ class ClanMember(BaseUser):
 class MemberClanRole(enum.Enum):
     """Member clan roles interface."""
 
+    EXECUTIVE_OFFICER: typing.Final[str] = 'executive officer'
     PRIVATE: typing.Final[str] = 'private'
     COMMANDER: typing.Final[str] = 'commander'
-    DIPLOMAT: typing.Final[str] = 'diplomat'
-    VICE_LEADER: typing.Final[str] = 'vice_leader'
-    LEADER: typing.Final[str] = 'leader'
-    RECRUITER: typing.Final[str] = 'recruiter'
-    TREASURER: typing.Final[str] = 'treasurer'
 
     def __repr__(self) -> str:
         return self.value

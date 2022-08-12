@@ -45,6 +45,8 @@ class WOTBClient:
     ----------
     application_id : builtins.str
         Application ID of WotBlitz API applications.
+    language : typing.Optional[onewot.data_binding.Language]
+        Localization for WotBlitz API.
 
     Example
     -------
@@ -54,15 +56,15 @@ class WOTBClient:
 
     import onewot
 
-    client = onewot.WOTBClient(os.environ["APPLICATION_ID"])
+    client = onewot.WOTBClient(os.environ["APPLICATION_ID"], language=onewot.Language.ENGLISH)
     ```
     """
 
     __slots__: typing.Sequence[str] = ('_application_id', '_http')
 
-    def __init__(self, application_id: str) -> None:
-        self._application_id = application_id
-        self._http: http.HTTPClientImpl = http.HTTPClientImpl(application_id)
+    def __init__(self, application_id: str, language: typing.Optional[data_binding.Language] = 'ru') -> None:
+        self._application_id: str = application_id
+        self._http: http.HTTPClientImpl = http.HTTPClientImpl(application_id, language)
 
     def fetch_user(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.User:
         """Fetch a user by name or identificator.

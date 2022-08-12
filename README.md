@@ -20,7 +20,8 @@ py -3 -m pip install -U onewot
 
 ```py
 import onewot
-client = onewot.WOTBClient(application="...")
+
+client = onewot.WOTBClient(application='...')
 ```
 
 ----
@@ -29,7 +30,9 @@ client = onewot.WOTBClient(application="...")
 
 ```py
 import onewot
-client = onewot.WOTBClient(application="...")
+
+client = onewot.WOTBClient(application='...', language=onewot.Language.ENGLISH)
+
 print(client.fetch_user(152870490))
 ```
 

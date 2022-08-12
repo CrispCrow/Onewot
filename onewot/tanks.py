@@ -101,7 +101,7 @@ class DefaultTurret:
 
 
 @attr.define(slots=True, frozen=True)
-class Cost:
+class TankCost:
     price_credit: int = attr.field()
     price_gold: int = attr.field()
 
@@ -171,9 +171,3 @@ class DefaultShell:
 class TankImage:
     preview: str = attr.field()
     normal: str = attr.field()
-
-
-@attr.define(slots=True, frozen=True)
-class TankCost:
-    price_credit: int = attr.field()
-    price_gold: int = attr.field()

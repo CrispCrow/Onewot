@@ -22,10 +22,12 @@
 """Data binding utilities."""
 
 import typing
+import enum
 
 __all__: typing.Sequence[str] = (
     'JSONObject',
     'CLAN',
+    'Language'
 )
 
 JSONObject = typing.Mapping[str, typing.Any]
@@ -33,3 +35,19 @@ JSONObject = typing.Mapping[str, typing.Any]
 
 CLAN: typing.Final[str] = 'clan'
 """Clan entity constant."""
+
+
+class Language(str, enum.Enum):
+    ENGLISH: typing.Final[str] = 'en'
+    RUSSIAN: typing.Final[str] = 'ru'
+    POLISH: typing.Final[str] = 'pl'
+    GERMAN: typing.Final[str] = 'de'
+    FRENCH: typing.Final[str] = 'fr'
+    SPANISH: typing.Final[str] = 'es'
+    CHINESE_SIMPLIFIED: typing.Final[str] = '简体中文'
+    TRADITIONAL_CHINESE: typing.Final[str] = '繁體中文'
+    TURKISH: typing.Final[str] = 'tr'
+    CZECH: typing.Final[str] = 'cs',
+    THAILAND: typing.Final[str] = 'th'
+    VIETNAMESE: typing.Final[str] = 'vi'
+    KOREAN: typing.Final[str] = 'ko'

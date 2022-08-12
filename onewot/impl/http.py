@@ -57,13 +57,15 @@ class HTTPClientImpl(http.HTTPClient):
 
     __slots__: typing.Sequence[str] = (
         '_application_id',
+        '_language'
         '_session',
         '_error_handler',
         '_entity_factory'
     )
 
-    def __init__(self, application_id: str) -> None:
+    def __init__(self, application_id: str, language: data_binding.Language) -> None:
         self._application_id: str = application_id
+        self._language: Language = language
         self._session: sessions.FuturesSession = sessions.FuturesSession()
         self._error_handler: error_handlers.ErrorHandlerImpl = error_handlers.ErrorHandlerImpl()
         self._entity_factory: entity_factory.EntityFactoryImpl = entity_factory.EntityFactoryImpl()
@@ -83,7 +85,7 @@ class HTTPClientImpl(http.HTTPClient):
         return payload
 
     def _create_params(self, **kwargs: typing.Any) -> dict[str, typing.Any]:
-        return dict(kwargs, application_id=self._application_id)
+        return dict(kwargs, application_id=self._application_id, language=self._language)
 
     def _get_entity_id(self, entity_type: str, entity_name: str) -> snowflakes.Snowflake:
         params = self._create_params(search=entity_name)
