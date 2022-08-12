@@ -30,6 +30,7 @@ import abc
 
 if typing.TYPE_CHECKING:
     from onewot.internal import data_binding
+    from onewot import errors
 
 
 class ErrorHandler(abc.ABC):

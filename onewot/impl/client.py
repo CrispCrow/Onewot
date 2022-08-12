@@ -33,6 +33,7 @@ if typing.TYPE_CHECKING:
     from onewot import users
     from onewot import clans
     from onewot import tournaments
+    from onewot import tanks
     from onewot import snowflakes
 
 
