@@ -53,7 +53,6 @@ def calculate_win_percent(payload: data_binding.JSONObject) -> typing.Union[int,
 
 class EntityFactoryImpl(entity_factory.EntityFactory):
     """Standard implementation for a deserializer.
-
     This will convert objects from JSON compatible representations.
     """
 
@@ -76,7 +75,9 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
             name=payload.get('name'),
             old_name=payload.get('old_name'),
             old_tag=payload.get('old_tag'),
-            recruiting_policy=payload.get('recruiting_policy'),
+            recruiting_policy=clan_models.RecruitingPolicy(
+                payload.get('recruiting_policy')
+            ) if not payload['is_clan_disbanded'] else None,
             renamed_at=payload.get('renamed_at'),
             tag=payload.get('tag'),
             updated_at=unix.UnixTime(payload['updated_at']),
@@ -91,7 +92,7 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
             created_at=unix.UnixTime(payload['created_at']),
             last_battle_time=payload.get('last_battle_time'),
             nickname=payload['nickname'],
-            updated_at=payload['updated_at'],
+            updated_at=unix.UnixTime(payload['updated_at']),
             spotted=payload['statistics']['all']['spotted'],
             max_frags_tank_id=payload['statistics']['all']['max_frags_tank_id'],
             hits=payload['statistics']['all']['hits'],
@@ -115,7 +116,7 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
             achievements=payload['achievements']
         )
 
-    def deserialize_achievement(self, payload: data_binding.JSONObject) -> achievement_models.Achievement:
+    def deserialize_achievement(self, payload: data_binding.JSONObject) -> typing.Type[type]:
         achievement = achievement_models.BaseAchievement(payload).make_class()
         payload = dict(payload['achievements'], max_series=payload['max_series'])
         return achievement(**payload)

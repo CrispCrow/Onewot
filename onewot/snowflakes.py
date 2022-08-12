@@ -29,7 +29,6 @@ __all__: typing.Sequence[str] = ('Snowflake',)
 @typing.final
 class Snowflake(int):
     """A concrete representation of unique ID of an entity on WotBlitz.
-
     This object can be treated as a regular `builtins.int` for most purposes.
     """
 

@@ -26,6 +26,7 @@ from __future__ import annotations
 __all__: typing.Sequence[str] = ('BaseAchievement',)
 
 import typing
+
 import attr
 
 if typing.TYPE_CHECKING:
@@ -41,7 +42,7 @@ class BaseAchievement:
             max_series=payload['max_series']
         )
 
-    def make_class(self) -> typing.Type[type]:
+    def make_class(self) -> typing.Type[object]:
         """Create a new class with user achievements data."""
 
         attrs = list(self.achievements)

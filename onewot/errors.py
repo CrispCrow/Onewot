@@ -37,7 +37,7 @@ class OnewotError(RuntimeError):
     code: str = attr.field()
     message: str = attr.field()
     field: str = attr.field()
-    value: str = attr.field()
+    value: typing.Union[str, int] = attr.field()
 
 
 @attr.define(auto_exc=True)

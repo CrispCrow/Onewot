@@ -40,17 +40,14 @@ from onewot import errors
 if typing.TYPE_CHECKING:
     from onewot import users
     from onewot import clans
-    from onewot import achievements
     from onewot import tournaments
 
 
 class HTTPClientImpl(http.HTTPClient):
     """HTTP client for making requests to API methods.
-
     This manages making HTTP/1.1 requests to the API and using the entity
     factory within the passed application instance to deserialize JSON responses
     to Pythonic data classes that are used throughout this library.
-
     Parameters
     ----------
     application_id : builtins.str
@@ -67,8 +64,8 @@ class HTTPClientImpl(http.HTTPClient):
     def __init__(self, application_id: str) -> None:
         self._application_id: str = application_id
         self._session: sessions.FuturesSession = sessions.FuturesSession()
-        self._error_handler: error_handlers.ErrorHandler = error_handlers.ErrorHandlerImpl()
-        self._entity_factory: entity_factory.EntityFactory = entity_factory.EntityFactoryImpl()
+        self._error_handler: error_handlers.ErrorHandlerImpl = error_handlers.ErrorHandlerImpl()
+        self._entity_factory: entity_factory.EntityFactoryImpl = entity_factory.EntityFactoryImpl()
 
     def _request(
         self,
@@ -97,7 +94,7 @@ class HTTPClientImpl(http.HTTPClient):
     def _get_payload(
         self,
         entity_id: snowflakes.Snowflake,
-        api_method: typing.Union[urls.API_METHODS],
+        api_method: urls.ApiMethod,
         get_achievements: typing.Optional[bool] = False,
         **params: typing.Any
     ) -> data_binding.JSONObject:
@@ -137,7 +134,7 @@ class HTTPClientImpl(http.HTTPClient):
         )
         return self._entity_factory.deserialize_clan(payload)
 
-    def fetch_user_achievements(self, user: typing.Union[str, snowflakes.Snowflake]) -> achievements.Achievement:
+    def fetch_user_achievements(self, user: typing.Union[str, snowflakes.Snowflake]) -> typing.Type[object]:
         if isinstance(user, str):
             user = self._get_entity_id('account_id', user)
 
@@ -148,7 +145,7 @@ class HTTPClientImpl(http.HTTPClient):
         )
         return self._entity_factory.deserialize_achievement(payload)
 
-    def fetch_clan_member(self, user: typing.Union[str, snowflakes.Snowflake]) -> clans.ClanMember:
+    def fetch_clan_member(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.ClanMember:
         if isinstance(user, str):
             user = self._get_entity_id('account_id', user)
 

@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 # cython: language_level=3
 # Copyright (c) 2022 Crisp Crow

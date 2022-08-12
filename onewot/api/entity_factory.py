@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # cython: language_level=3
-# Copyright (c) 2020 Nekokatt
-# Copyright (c) 2021-present davfsa
+# Copyright (c) 2022 Crisp Crow
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -53,12 +52,10 @@ class EntityFactory(abc.ABC):
     @abc.abstractmethod
     def deserialize_clan(self, payload: data_binding.JSONObject) -> clan_models.Clan:
         """Parse a raw payload from WotBlitz into a clan object.
-
         Parameters
         ----------
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
-
         Returns
         -------
         onewot.clans.Clan
@@ -68,12 +65,10 @@ class EntityFactory(abc.ABC):
     @abc.abstractmethod
     def deserialize_user(self, payload: data_binding.JSONObject) -> user_models.User:
         """Parse a raw payload from WotBlitz into a user object.
-
         Parameters
         ----------
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
-
         Returns
         -------
         onewot.users.User
@@ -83,12 +78,10 @@ class EntityFactory(abc.ABC):
     @abc.abstractmethod
     def deserialize_achievement(self, payload: data_binding.JSONObject) -> achievement_models.Achievement:
         """Parse a raw payload from WotBlitz into an achivement object.
-
         Parameters
         ----------
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
-
         Returns
         -------
         onewot.achivements.Achievement
@@ -98,12 +91,10 @@ class EntityFactory(abc.ABC):
     @abc.abstractmethod
     def deserialize_base_clan(self, payload: data_binding.JSONObject) -> clan_models.BaseClan:
         """Parse a raw payload from WotBlitz into a base clan object.
-
         Parameters
         ----------
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
-
         Returns
         -------
         onewot.clans.BaseClan
@@ -113,12 +104,10 @@ class EntityFactory(abc.ABC):
     @abc.abstractmethod
     def deserialize_clan_member(self, payload: data_binding.JSONObject) -> user_models.ClanMember:
         """Parse a raw payload from WotBlitz into a clan member object.
-
         Parameters
         ----------
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
-
         Returns
         -------
         onewot.users.ClanMember
@@ -128,12 +117,10 @@ class EntityFactory(abc.ABC):
     @abc.abstractmethod
     def deserialize_recruiting_options(self, payload: data_binding.JSONObject) -> clan_models.RecruitingOptions:
         """Parse a raw payload from WotBlitz into a recruiting clan options object.
-
         Parameters
         ----------
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
-
         Returns
         -------
         onewot.clans.RecruitingOptions
@@ -143,12 +130,10 @@ class EntityFactory(abc.ABC):
     @abc.abstractmethod
     def deserialize_tournament(self, payload: data_binding.JSONObject) -> tournament_models.Tournament:
         """Parse a raw payload from WotBlitz into a tournament object.
-
         Parameters
         ----------
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
-
         Returns
         -------
         onewot.tournaments.Tournament

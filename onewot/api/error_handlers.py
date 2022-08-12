@@ -40,7 +40,7 @@ class ErrorHandler(abc.ABC):
         self,
         payload: data_binding.JSONObject,
         params: dict[str, typing.Any]
-    ) -> typing.Optional[data_binding.JSONObject]:
+    ) -> typing.Union[data_binding.JSONObject, errors.OnewotError]:
         """Handle recieved JSON object.
 
         Parameters
@@ -52,11 +52,8 @@ class ErrorHandler(abc.ABC):
 
         Returns
         -------
-        onewot.internal.data_binding.JSONObject
+        typing.Optional[onewot.internal.data_binding.JSONObject]
             The JSON payload.
-
-        Raises
-        ------
         onewot.errors.OnewotError
             if API request response returns JSON payload with status `error`
         """

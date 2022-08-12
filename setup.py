@@ -72,4 +72,11 @@ setuptools.setup(
         'Source (GitHub)': metadata.url,
         'Issue Tracker': metadata.issue_tracker,
     },
+    classifiers=[
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Natural Language :: English',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent'
+    ]
 )

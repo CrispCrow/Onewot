@@ -23,15 +23,15 @@
 
 from __future__ import annotations
 
-__all__: typing.Sequence[str] = ('Clan', 'BaseClan', 'RecruitingOptions')
+__all__: typing.Sequence[str] = ('Clan', 'BaseClan', 'RecruitingOptions', 'RecruitingPolicy')
 
 import abc
 import typing
+import enum
 
 import attr
 
 if typing.TYPE_CHECKING:
-    from onewot.internal.data_binding import OPEN, RESTRICTED
     from onewot.internal import unix
     from onewot import snowflakes
 
@@ -62,7 +62,7 @@ class Clan(BaseClan):
     motto: typing.Optional[str] = attr.field()
     old_name: typing.Optional[str] = attr.field()
     old_tag: typing.Optional[str] = attr.field()
-    recruiting_policy: typing.Optional[OPEN | RESTRICTED] = attr.field()
+    recruiting_policy: typing.Optional[RecruitingPolicy] = attr.field()
     renamed_at: typing.Optional[unix.UnixTime] = attr.field()
     updated_at: typing.Optional[unix.UnixTime] = attr.field()
     recruiting_options: typing.Optional[RecruitingOptions] = attr.field()
@@ -77,3 +77,13 @@ class RecruitingOptions:
     average_battles_per_day: int = attr.field()
     battles: int = attr.field()
     average_damage: int = attr.field()
+
+
+class RecruitingPolicy(enum.Enum):
+    """Recruiting policy of clan."""
+
+    OPEN: typing.Final[str] = 'open'
+    RESTRICTED: typing.Final[str] = 'restricted'
+
+    def __repr__(self) -> str:
+        return self.value

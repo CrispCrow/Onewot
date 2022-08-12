@@ -26,8 +26,6 @@ import typing
 __all__: typing.Sequence[str] = (
     'JSONObject',
     'CLAN',
-    'OPEN',
-    'RESTRICTED'
 )
 
 JSONObject = typing.Mapping[str, typing.Any]
@@ -35,9 +33,3 @@ JSONObject = typing.Mapping[str, typing.Any]
 
 CLAN: typing.Final[str] = 'clan'
 """Clan entity constant."""
-
-OPEN: typing.Final[str] = 'open'
-"""Open type of clan recruiting policy constant."""
-
-RESTRICTED: typing.Final[str] = 'restricted'
-"""Restricted type of clan recruiting policy constant."""

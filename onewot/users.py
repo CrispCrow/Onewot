@@ -34,7 +34,6 @@ import attr
 if typing.TYPE_CHECKING:
     from onewot.internal import unix
     from onewot import clans
-    from onewot import achievements as achievement_models
     from onewot import snowflakes
 
 
@@ -98,4 +97,4 @@ class User(BaseUser):
     survived_battles: int = attr.field()
     dropped_capture_points: int = attr.field()
     win_percent: float = attr.field()
-    achievements: achievement_models.Achievement = attr.field()
+    achievements: typing.Type[object] = attr.field()

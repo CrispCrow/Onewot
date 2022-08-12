@@ -21,7 +21,7 @@
 # SOFTWARE.
 """API-wide URLs."""
 
-import typing
+from __future__ import annotations
 
 __all__: typing.Sequence[str] = (
     'BASE_URL',
@@ -32,8 +32,13 @@ __all__: typing.Sequence[str] = (
     'CLAN_INFO_PATH',
     'CLAN_MEMBER_PATH',
     'TOURNAMENT_LIST_PATH',
-    'TOURNAMENT_INFO_PATH'
+    'TOURNAMENT_INFO_PATH',
+    'API_METHODS',
+    'ApiMethod'
 )
+
+import typing
+import enum
 
 BASE_URL: typing.Final[str] = 'https://api.wotblitz.ru/wotb'
 """Base path to wotblitz API."""
@@ -62,7 +67,7 @@ TOURNAMENT_LIST_PATH: typing.Final[str] = BASE_URL + '/tournaments/list/'
 TOURNAMENT_INFO_PATH: typing.Final[str] = BASE_URL + '/tournaments/info/'
 """Path to specified tournament info API method."""
 
-API_METHODS: typing.Final[dict[str, str]] = {
+API_METHODS: typing.Final[dict[ApiMethod, str]] = {
     'account_info': ACCOUNT_INFO_PATH,
     'account_list': ACCOUNT_LIST_PATH,
     'account_achievements': ACCOUNT_ACHIEVEMENTS_PATH,
@@ -73,3 +78,16 @@ API_METHODS: typing.Final[dict[str, str]] = {
     'tournament_list': TOURNAMENT_LIST_PATH
 }
 """Dict of API methods."""
+
+
+class ApiMethod(str, enum.Enum):
+    """Enum class with api methods for type hinting."""
+
+    ACCOUNT_INFO: typing.Final[str] = 'account_info'
+    ACCOUNT_LIST: typing.Final[str] = 'account_list'
+    ACCOUNT_ACHIEVEMENTS: typing.Final[str] = 'account_achievements'
+    CLAN_INFO: typing.Final[str] = 'clan_info'
+    CLAN_LIST: typing.Final[str] = 'clan_list'
+    CLAN_MEMBER: typing.Final[str] = 'clan_member'
+    TOURNAMENT_INFO: typing.Final[str] = 'tournament_info'
+    TOURNAMENT_LIST: typing.Final[str] = 'tournament_list'

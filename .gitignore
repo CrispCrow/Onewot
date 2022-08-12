@@ -9,3 +9,6 @@ pip-wheel-metadata/
 *.so
 *.o
 *.pyd
+
+# Mypy cache
+.mypy_cache

@@ -31,7 +31,6 @@ import abc
 if typing.TYPE_CHECKING:
     from onewot import users
     from onewot import clans
-    from onewot import achievements
     from onewot import tournaments
     from onewot import snowflakes
     from onewot import urls
@@ -46,10 +45,9 @@ class HTTPClient(abc.ABC):
         self,
         method: str,
         path: str,
-        params: dict[str, typing.Any] = None
-    ) -> data_binding.JSONObject:
+        params: dict[str, typing.Any]
+    ) -> typing.Optional[data_binding.JSONObject]:
         """Method for making HTTP-requests.
-
         Parameters
         ----------
         method : builins.str
@@ -58,7 +56,6 @@ class HTTPClient(abc.ABC):
             Path to API method.
         params : builtins.dict[builtins.str, typing.Any]
             Dict of specified parameters for request.
-
         Returns
         -------
         onewot.internal.data_binding.JSONObject
@@ -68,12 +65,10 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def _create_params(self, **kwargs: typing.Any) -> dict[str, typing.Any]:
         """Create parameters for HTTP-request.
-
         Parameters
         ----------
         kwargs : typing.Any
             Parameters for HTTP request body.
-
         Returns
         -------
         builtins.dict[builtins.str, typing.Any]
@@ -83,14 +78,12 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def _get_entity_id(self, entity_type: str, entity_name: str) -> snowflakes.Snowflake:
         """Fetch entity by his name.
-
         Parameters
         ----------
         entity_type : builtins.str
             One of entities of entity factory.
         entity_name : builtins.str
             Specified entity name.
-
         Returns
         -------
         onewot.snowflakes.Snowflake
@@ -101,12 +94,11 @@ class HTTPClient(abc.ABC):
     def _get_payload(
         self,
         entity_id: snowflakes.Snowflake,
-        api_method: typing.Union[urls.API_METHODS],
-        get_achievements: typing.Optional[bool] = None,
+        api_method: urls.ApiMethod,
+        get_achievements: typing.Optional[bool] = False,
         **params: typing.Any
     ) -> data_binding.JSONObject:
         """Get payload data of entity from API.
-
         Parameters
         ----------
         entity_id : snowflakes.Snowflake
@@ -117,12 +109,10 @@ class HTTPClient(abc.ABC):
             Fetch user achievements or not. Defaults to `builtins.False`
         params : typing.Any
             Parameters for HTTP request body.
-
         Returns
         -------
         onewot.internal.data_binding.JSONObject
             JSON response from API request.
-
         Raises
         ------
         onewot.errors.EntityNotFound
@@ -132,12 +122,10 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_user(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.User:
         """Fetch user by his ID or name.
-
         Parameters
         ----------
         user : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             User to fetch.
-
         Returns
         -------
         onewot.users.User
@@ -147,12 +135,10 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_clan(self, clan: typing.Union[str, snowflakes.Snowflake]) -> clans.Clan:
         """Fetch clan by his ID or name.
-
         Parameters
         ----------
         clan : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             Clan to fetch.
-
         Returns
         -------
         onewot.clans.Clan
@@ -160,29 +146,25 @@ class HTTPClient(abc.ABC):
         """
 
     @abc.abstractmethod
-    def fetch_user_achievements(self, user: typing.Union[str, snowflakes.Snowflake]) -> achievements.Achievement:
+    def fetch_user_achievements(self, user: typing.Union[str, snowflakes.Snowflake]) -> typing.Type[object]:
         """Fetch user achievements.
-
         Parameters
         ----------
         user : typing.Union[builtins.str, snowflakes.Snowflake]
             User to fetch achievements.
-
         Returns
         -------
-        onewot.achievements.Achievement
+        typing.Type[object]
             Deserialized achievement object.
         """
 
     @abc.abstractmethod
     def fetch_clan_member(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.ClanMember:
         """Fetch clan member by his ID or name.
-
         Parameters
         ----------
         user : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             User to fetch.
-
         Returns
         -------
         onewot.users.ClanMember
@@ -197,7 +179,6 @@ class HTTPClient(abc.ABC):
         limit: typing.Optional[int] = None
     ) -> typing.Optional[tuple[tournaments.Tournament]]:
         """Fetch tournaments.
-
         Parameters
         ----------
         tournament_name : typing.Optional[builtins.str]
@@ -206,7 +187,6 @@ class HTTPClient(abc.ABC):
             Page for search. Defaults to `builtins.None`.
         limit : typing.Optional[builtins.int]
             Tournament search limit. Defaults to `builtins.None`.
-
         Returns
         -------
         typing.Optional[builtins.tuple[onewot.tournaments.Tournament]]
@@ -217,12 +197,10 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_users_by_id(self, user_ids: typing.Iterable[snowflakes.Snowflake]) -> tuple[users.User]:
         """Fetch users by their ID.
-
         Parameters
         ----------
         user_ids : typing.Iterable[onewot.snowflake.Snowflake]
             An iterable object of user IDs.
-
         Returns
         -------
         builtins.tuple[onewot.users.User]
@@ -232,12 +210,10 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_tournament(self, tournament: typing.Union[str, snowflakes.Snowflake]) -> tournaments.Tournament:
         """Fetch tournament by his ID or name.
-
         Parameters
         ----------
         tournament : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             Tournament to fetch.
-
         Returns
         -------
         onewot.tournaments.Tournament
