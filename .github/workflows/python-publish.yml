@@ -32,7 +32,7 @@ jobs:
         pip install wheel
         pip install twine
     - name: Build package
-      run: python -m bdist_wheel
+      run: python -m setup.py bdist_wheel
     - name: Publish package
       uses: twine upload dist/*
       with:
