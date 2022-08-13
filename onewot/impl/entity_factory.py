@@ -54,6 +54,7 @@ def calculate_win_percent(payload: data_binding.JSONObject) -> typing.Union[int,
 
 class EntityFactoryImpl(entity_factory.EntityFactory):
     """Standard implementation for a deserializer.
+
     This will convert objects from JSON compatible representations.
     """
 
@@ -114,7 +115,8 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
             survived_battles=payload['statistics']['all']['survived_battles'],
             dropped_capture_points=payload['statistics']['all']['dropped_capture_points'],
             win_percent=calculate_win_percent(payload),
-            achievements=payload['achievements']
+            achievements=payload['achievements'],
+            rating=self.deserialize_user_rating(payload['statistics']['rating'])
         )
 
     def deserialize_achievement(self, payload: data_binding.JSONObject) -> typing.Type[type]:
@@ -237,4 +239,28 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
             shells=tuple(tank_models.DefaultShell(**shell) for shell in payload['shells']),
             suspension=tank_models.DefaultSuspension(**payload['suspension']),
             turret=tank_models.DefaultTurret(**payload['turret'])
+        )
+
+    def deserialize_user_rating(self, payload: data_binding.JSONObject) -> user_models.UserRating:
+        return user_models.UserRating(
+            battles=payload['battles'],
+            calibration_battles_left=payload['calibration_battles_left'],
+            capture_points=payload['capture_points'],
+            current_season=payload['current_season'],
+            damage_dealt=payload['damage_dealt'],
+            damage_received=payload['damage_received'],
+            dropped_capture_points=payload['dropped_capture_points'],
+            frags=payload['frags'],
+            frags8p=payload['frags8p'],
+            hits=payload['hits'],
+            is_recalibration=payload['is_recalibration'],
+            losses=payload['losses'],
+            mm_rating=payload['mm_rating'],
+            recalibration_start_time=unix.UnixTime(payload['recalibration_start_time']),
+            shots=payload['shots'],
+            spotted=payload['spotted'],
+            survived_battles=payload['survived_battles'],
+            win_and_survived=payload['win_and_survived'],
+            wins=payload['wins'],
+            xp=payload['xp']
         )

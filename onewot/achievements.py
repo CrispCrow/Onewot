@@ -45,9 +45,5 @@ class BaseAchievement:
     def make_class(self) -> typing.Type[object]:
         """Create a new class with user achievements data."""
 
-        attrs = list(self.achievements)
-        return attr.make_class(
-            'Achievement',
-            attrs=attrs,
-            repr=True
-        )
+        attrs = {key: attr.field() for key in self.achievements.keys()}
+        return attr.make_class('Achievement', attrs=attrs, repr=True)

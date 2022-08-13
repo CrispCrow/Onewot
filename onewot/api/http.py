@@ -111,7 +111,7 @@ class HTTPClient(abc.ABC):
         ----------
         entity_id : snowflakes.Snowflake
             Entity to fetch.
-        api_method : typing.Union[urls.API_METHODS]
+        api_method : urls.ApiMethod
             Api method to use.
         get_achievements : typing.Optional[builtins.bool]
             Fetch user achievements or not. Defaults to `builtins.False`

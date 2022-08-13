@@ -46,13 +46,17 @@ if typing.TYPE_CHECKING:
 
 class HTTPClientImpl(http.HTTPClient):
     """HTTP client for making requests to API methods.
+
     This manages making HTTP/1.1 requests to the API and using the entity
     factory within the passed application instance to deserialize JSON responses
     to Pythonic data classes that are used throughout this library.
+
     Parameters
     ----------
     application_id : builtins.str
         Application ID of WotBlitz API application.
+    language : onewot.internal.data_binding.Language
+        Localization for WotBlitz API.
     """
 
     __slots__: typing.Sequence[str] = (
@@ -122,7 +126,8 @@ class HTTPClientImpl(http.HTTPClient):
             entity_id=user,
             api_method='account_info',
             get_achievements=True,
-            account_id=user
+            account_id=user,
+            extra='statistics.rating'
         )
         return self._entity_factory.deserialize_user(payload=payload)
 
@@ -183,7 +188,8 @@ class HTTPClientImpl(http.HTTPClient):
                         entity_id=user_id,
                         api_method='account_info',
                         get_achievements=True,
-                        account_id=user_id
+                        account_id=user_id,
+                        extra='statistics.rating'
                         ),
                 ), user_ids
             )

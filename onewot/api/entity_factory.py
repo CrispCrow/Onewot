@@ -184,3 +184,18 @@ class EntityFactory(abc.ABC):
         onewot.tanks.DefaultProfile
             The deserialized tank default profile information object.
         """
+
+    @abc.abstractmethod
+    def deserialize_user_rating(self, payload: data_binding.JSONObject) -> user_models.UserRating:
+        """Parse a raw payload from WotBlitz into a user rating object.
+
+        Parameters
+        ----------
+        payload : onewot.internal.data_binding.JSONObject
+            The JSON payload to deserialize.
+
+        Returns
+        -------
+        onewot.users.UserRating
+            The deserialized user rating information object.
+        """
