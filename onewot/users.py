@@ -95,10 +95,13 @@ class User(BaseUser):
     win_percent: float = attr.field()
     achievements: typing.Type[object] = attr.field()
     rating: UserRating = attr.field()
+    private: typing.Optional[UserPrivate] = attr.field()
 
 
 @attr.define(slots=True, frozen=True)
 class UserRating:
+    """Interface of user rating information."""
+
     battles: int = attr.field()
     calibration_battles_left: int = attr.field()
     capture_points: int = attr.field()
@@ -119,3 +122,18 @@ class UserRating:
     win_and_survived: int = attr.field()
     wins: int = attr.field()
     xp: int = attr.field()
+
+
+@attr.define(slots=True, frozen=True)
+class UserPrivate:
+    """Interface of user private information."""
+
+    ban_info: str = attr.field()
+    ban_time: unix.UnixTime = attr.field()
+    chat_ban_time: unix.UnixTime = attr.field()
+    battle_life_time: int = attr.field()
+    credits: int = attr.field()
+    free_xp: int = attr.field()
+    gold: int = attr.field()
+    is_premium: bool = attr.field()
+    premium_expires_at: unix.UnixTime = attr.field()

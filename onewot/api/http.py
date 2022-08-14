@@ -192,9 +192,9 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_tournaments(
         self,
-        tournament_name: typing.Optional[str] = None,
-        page_number: typing.Optional[int] = None,
-        limit: typing.Optional[int] = None
+        tournament_name: typing.Optional[str],
+        page_number: typing.Optional[int],
+        limit: typing.Optional[int]
     ) -> typing.Optional[tuple[tournaments.Tournament]]:
         """Fetch tournament entities.
 
@@ -217,10 +217,12 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_users_by_id(self, user_ids: typing.Iterable[snowflakes.Snowflake]) -> tuple[users.User]:
         """Fetch user entities by their ID.
+
         Parameters
         ----------
         user_ids : typing.Iterable[onewot.snowflake.Snowflake]
             An iterable object of user IDs.
+
         Returns
         -------
         builtins.tuple[onewot.users.User]
@@ -230,10 +232,12 @@ class HTTPClient(abc.ABC):
     @abc.abstractmethod
     def fetch_tournament(self, tournament: typing.Union[str, snowflakes.Snowflake]) -> tournaments.Tournament:
         """Fetch tournament entity by his ID or name.
+
         Parameters
         ----------
         tournament : typing.Union[builtins.str, onewot.snowflakes.Snowflake]
             Tournament to fetch.
+
         Returns
         -------
         onewot.tournaments.Tournament
@@ -248,6 +252,7 @@ class HTTPClient(abc.ABC):
         ----------
         tank : onewot.snowflakes.Snowflake
             Tank to fetch.
+
         Returns
         -------
         onewot.tanks.Tank

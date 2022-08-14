@@ -48,6 +48,9 @@ class WOTBClient:
         Application ID of WotBlitz API applications.
     language : typing.Optional[onewot.data_binding.Language]
         Localization for WotBlitz API.
+    access_token : typing.Optional[str]
+        Access token to fetch private entity payload.
+        Read more https://developers.wargaming.net/documentation/guide/principles/#access_token
 
     Example
     -------
@@ -63,9 +66,13 @@ class WOTBClient:
 
     __slots__: typing.Sequence[str] = ('_application_id', '_http')
 
-    def __init__(self, application_id: str, language: typing.Optional[data_binding.Language] = 'ru') -> None:
-        self._application_id: str = application_id
-        self._http: http.HTTPClientImpl = http.HTTPClientImpl(application_id, language)
+    def __init__(
+        self,
+        application_id: str,
+        language: typing.Optional[data_binding.Language] = 'ru',
+        access_token: typing.Optional[str] = None
+    ) -> None:
+        self._http: http.HTTPClientImpl = http.HTTPClientImpl(application_id, language, access_token)
 
     def fetch_user(self, user: typing.Union[str, snowflakes.Snowflake]) -> users.User:
         """Fetch a user by name or identificator.
@@ -135,7 +142,7 @@ class WOTBClient:
         builtins.tuple[tournaments.Tournament]
             List of tournaments.
         """
-        return self._http.fetch_tournaments(limit=limit)
+        return self._http.fetch_tournaments(tournament_name, page_number, limit)
 
     def fetch_users_by_id(self, user_ids: typing.Iterable[snowflakes.Snowflake]) -> tuple[users.User]:
         """Fetch users by their identificators.

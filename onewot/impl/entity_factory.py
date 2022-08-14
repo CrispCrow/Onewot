@@ -116,7 +116,8 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
             dropped_capture_points=payload['statistics']['all']['dropped_capture_points'],
             win_percent=calculate_win_percent(payload),
             achievements=payload['achievements'],
-            rating=self.deserialize_user_rating(payload['statistics']['rating'])
+            rating=self.deserialize_user_rating(payload['statistics']['rating']),
+            private=self.deserialize_user_private(payload['private']) if payload['private'] is not None else None
         )
 
     def deserialize_achievement(self, payload: data_binding.JSONObject) -> typing.Type[type]:
@@ -263,4 +264,17 @@ class EntityFactoryImpl(entity_factory.EntityFactory):
             win_and_survived=payload['win_and_survived'],
             wins=payload['wins'],
             xp=payload['xp']
+        )
+
+    def deserialize_user_private(self, payload: data_binding.JSONObject) -> user_models.UserPrivate:
+        return user_models.UserPrivate(
+            ban_info=payload['ban_info'],
+            ban_time=unix.UnixTime(payload['ban_time']),
+            chat_ban_time=unix.UnixTime(payload['restrictions']['chat_ban_time']),
+            battle_life_time=payload['battle_life_time'],
+            credits=payload['credits'],
+            free_xp=payload['free_xp'],
+            gold=payload['gold'],
+            is_premium=payload['is_premium'],
+            premium_expires_at=unix.UnixTime(payload['premium_expires_at']),
         )

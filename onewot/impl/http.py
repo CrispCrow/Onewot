@@ -57,19 +57,29 @@ class HTTPClientImpl(http.HTTPClient):
         Application ID of WotBlitz API application.
     language : onewot.internal.data_binding.Language
         Localization for WotBlitz API.
+    access_token : typing.Optional[str]
+        Access token to fetch private entity payload.
+        Read more https://developers.wargaming.net/documentation/guide/principles/#access_token
     """
 
     __slots__: typing.Sequence[str] = (
         '_application_id',
         '_language'
+        '_access_token'
         '_session',
         '_error_handler',
         '_entity_factory'
     )
 
-    def __init__(self, application_id: str, language: data_binding.Language) -> None:
+    def __init__(
+        self,
+        application_id: str,
+        language: data_binding.Language,
+        access_token: typing.Optional[str]
+    ) -> None:
         self._application_id: str = application_id
         self._language: data_binding.Language = language
+        self._access_token: typing.Optional[str] = access_token
         self._session: sessions.FuturesSession = sessions.FuturesSession()
         self._error_handler: error_handlers.ErrorHandlerImpl = error_handlers.ErrorHandlerImpl()
         self._entity_factory: entity_factory.EntityFactoryImpl = entity_factory.EntityFactoryImpl()
@@ -127,7 +137,8 @@ class HTTPClientImpl(http.HTTPClient):
             api_method='account_info',
             get_achievements=True,
             account_id=user,
-            extra='statistics.rating'
+            extra='statistics.rating',
+            access_token=self._access_token if self._access_token is not None else None
         )
         return self._entity_factory.deserialize_user(payload=payload)
 
@@ -166,9 +177,9 @@ class HTTPClientImpl(http.HTTPClient):
 
     def fetch_tournaments(
         self,
-        tournament_name: typing.Optional[str] = None,
-        page_number: typing.Optional[int] = None,
-        limit: typing.Optional[int] = None
+        tournament_name: typing.Optional[str],
+        page_number: typing.Optional[int],
+        limit: typing.Optional[int]
     ) -> typing.Optional[tuple[tournaments.Tournament]]:
         params = self._create_params(
             search=tournament_name,
@@ -189,7 +200,8 @@ class HTTPClientImpl(http.HTTPClient):
                         api_method='account_info',
                         get_achievements=True,
                         account_id=user_id,
-                        extra='statistics.rating'
+                        extra='statistics.rating',
+                        access_token=self._access_token if self._access_token is not None else None
                         ),
                 ), user_ids
             )

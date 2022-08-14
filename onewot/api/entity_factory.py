@@ -115,7 +115,6 @@ class EntityFactory(abc.ABC):
 
         Parameters
         ----------
-
         payload : onewot.internal.data_binding.JSONObject
             The JSON payload to deserialize.
 
@@ -198,4 +197,19 @@ class EntityFactory(abc.ABC):
         -------
         onewot.users.UserRating
             The deserialized user rating information object.
+        """
+
+    @abc.abstractmethod
+    def deserialize_user_private(self, payload: data_binding.JSONObject) -> user_models.UserPrivate:
+        """Parse a raw payload from WotBlitz into a user private information object.
+
+        Parameters
+        ----------
+        payload : onewot.internal.data_binding.JSONObject
+            The JSON payload to deserialize.
+
+        Returns
+        -------
+        onewot.users.UserPrivate
+            The deserialized user private information object.
         """
