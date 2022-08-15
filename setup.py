@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# cython: language_level=3
 # Copyright (c) 2022 Crisp Crow
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy

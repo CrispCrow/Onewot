@@ -23,11 +23,21 @@
 
 from __future__ import annotations
 
-__all__: typing.Sequence[str] = ('Tournament',)
+__all__: typing.Sequence[str] = (
+    'Tournament',
+    'TournamentEconomy',
+    'TournamentAward',
+    'TournamentFee',
+    'TournamentWinnerAward',
+    'TournamentLogo',
+    'TournamentStatus',
+    'CurrencyType'
+)
 
-import attr
 import typing
 import enum
+
+import attr
 
 if typing.TYPE_CHECKING:
     from onewot.internal import unix
@@ -85,23 +95,29 @@ class TournamentLogo:
 
 
 class TournamentStatus(enum.Enum):
-    """Interface of tournament status information."""
+    """Interface of tournament status information.
+
+    Value can be **upcoming**, **finished**, **running** or **registration started**.
+    """
 
     UPCOMING: typing.Final[str] = 'upcoming'
     FINISHED: typing.Final[str] = 'finished'
     RUNNING: typing.Final[str] = 'running'
-    REGISTRATION_STARTED: typing.Final[str] = 'registration_started'
+    REGISTRATION_STARTED: typing.Final[str] = 'registration started'
 
     def __repr__(self) -> str:
         return self.value
 
 
 class CurrencyType(enum.Enum):
-    """Interface of tournament currency type information."""
+    """Interface of tournament currency type information.
+
+    Value can be **gold**, **credits** or **free experience**.
+    """
 
     GOLD: typing.Final[str] = 'gold'
     CREDITS: typing.Final[str] = 'credits'
-    FREE_EXPERIENCE: typing.Final[str] = 'free_experience'
+    FREE_EXPERIENCE: typing.Final[str] = 'free experience'
 
     def __repr__(self) -> str:
         return self.value

@@ -25,11 +25,11 @@ import typing
 
 
 __name__: typing.Final[str] = 'onewot'
-__author__: typing.Final[str] = 'Crisp Crow'
+__author__: typing.Final[str] = 'CrispCrow'
 __description__: typing.Final[str] = 'The WotBlitz API wrapper for Python3'
-__copyright__: typing.Final[str] = '© 2022-present Crisp Crow'
+__copyright__: typing.Final[str] = '© 2022-present CrispCrow'
 __email__: typing.Final[str] = 'minikslyh@gmail.com'
 __license__: typing.Final[str] = 'MIT'
 __url__: typing.Final[str] = 'https://github.com/CrispCrow/Onewot'
 __issue_tracker__: typing.Final[str] = 'https://github.com/CrispCrow/Onewot/issues'
-__version__: typing.Final[str] = '0.6.1'
+__version__: typing.Final[str] = '0.6.2'

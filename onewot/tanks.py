@@ -23,7 +23,21 @@
 
 from __future__ import annotations
 
-__all__: typing.Sequence[str] = ('Tank',)
+__all__: typing.Sequence[str] = (
+    'Tank',
+    'DefaultEngine',
+    'DefaultGun',
+    'DefaultSuspension',
+    'DefaultTurret',
+    'TankCost',
+    'DefaultProfile',
+    'ArmorType',
+    'ArmorTurret',
+    'ArmorHull',
+    'DefaultArmor',
+    'DefaultShell',
+    'TankImage'
+)
 
 import typing
 
@@ -35,6 +49,8 @@ if typing.TYPE_CHECKING:
 
 @attr.define(slots=True, frozen=True)
 class Tank:
+    """Interface of tank information."""
+
     id: snowflakes.Snowflake = attr.field()
     name: str = attr.field()
     description: str = attr.field()
@@ -55,6 +71,8 @@ class Tank:
 
 @attr.define(slots=True, frozen=True)
 class DefaultEngine:
+    """Interface of tank default engine information."""
+
     name: str = attr.field()
     fire_chance: int = attr.field()
     power: int = attr.field()
@@ -64,6 +82,8 @@ class DefaultEngine:
 
 @attr.define(slots=True, frozen=True)
 class DefaultGun:
+    """Interface of tank default gun information."""
+
     name: str = attr.field()
     aim_time: float = attr.field()
     caliber: int = attr.field()
@@ -81,6 +101,8 @@ class DefaultGun:
 
 @attr.define(slots=True, frozen=True)
 class DefaultSuspension:
+    """Interface of tank default suspension information."""
+
     name: str = attr.field()
     load_limit: int = attr.field()
     tier: int = attr.field()
@@ -90,6 +112,8 @@ class DefaultSuspension:
 
 @attr.define(slots=True, frozen=True)
 class DefaultTurret:
+    """Interface of tank default turret information."""
+
     name: str = attr.field()
     hp: int = attr.field()
     tier: int = attr.field()
@@ -102,12 +126,16 @@ class DefaultTurret:
 
 @attr.define(slots=True, frozen=True)
 class TankCost:
+    """Interface of tank cost information."""
+
     price_credit: int = attr.field()
     price_gold: int = attr.field()
 
 
 @attr.define(slots=True, frozen=True)
 class DefaultProfile:
+    """Interface of tank default profile information."""
+
     battle_level_range_max: int = attr.field()
     battle_level_range_min: int = attr.field()
     engine_id: snowflakes.Snowflake = attr.field()
@@ -139,6 +167,8 @@ class DefaultProfile:
 
 @attr.define(slots=True, frozen=True)
 class ArmorType:
+    """Interface of tank armor type information."""
+
     front: int = attr.field()
     rear: int = attr.field()
     sides: int = attr.field()
@@ -146,22 +176,28 @@ class ArmorType:
 
 @attr.define(slots=True, frozen=True)
 class ArmorTurret(ArmorType):
+    """Interface of tank armor turret information."""
     ...
 
 
 @attr.define(slots=True, frozen=True)
 class ArmorHull(ArmorType):
+    """Interface of tank armor hull information."""
     ...
 
 
 @attr.define(slots=True, frozen=True)
 class DefaultArmor:
+    """Interface of tank default armor information."""
+
     hull: ArmorHull = attr.field()
     turret: ArmorTurret = attr.field()
 
 
 @attr.define(slots=True, frozen=True)
 class DefaultShell:
+    """Interface of tank default shell information."""
+
     damage: int = attr.field()
     penetration: int = attr.field()
     type: str = attr.field()
@@ -169,5 +205,7 @@ class DefaultShell:
 
 @attr.define(slots=True, frozen=True)
 class TankImage:
+    """Interface of tank image information."""
+
     preview: str = attr.field()
     normal: str = attr.field()

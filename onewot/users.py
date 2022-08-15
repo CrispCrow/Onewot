@@ -23,7 +23,7 @@
 
 from __future__ import annotations
 
-__all__: typing.Sequence[str] = ('User', 'ClanMember')
+__all__: typing.Sequence[str] = ('BaseUser', 'User', 'ClanMember', 'UserRating', 'UserPrivate', 'MemberClanRole')
 
 import abc
 import typing
@@ -55,7 +55,10 @@ class ClanMember(BaseUser):
 
 
 class MemberClanRole(enum.Enum):
-    """Member clan roles interface."""
+    """Member clan roles interface.
+    
+    Value can be **executive officer**, **private** or **commander**.
+    """
 
     EXECUTIVE_OFFICER: typing.Final[str] = 'executive officer'
     PRIVATE: typing.Final[str] = 'private'

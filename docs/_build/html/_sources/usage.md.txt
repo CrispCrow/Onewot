@@ -1,0 +1,40 @@
+# Getting Started
+
+## Installation
+Install Onewot from PyPi with the following command:
+
+```bash
+python -m pip install -U onewot
+# Windows users may need to use this instead...
+py -3 -m pip install -U onewot
+```
+
+----
+
+## Updating
+
+```bash
+pip install --upgrade onewot
+```
+
+----
+
+## Start up client
+
+```py
+import onewot
+
+client = onewot.WOTBClient(application='...')
+```
+
+----
+
+## Example
+
+```py
+import onewot
+
+client = onewot.WOTBClient(application='...', language=onewot.Language.ENGLISH)
+
+print(client.fetch_user(152870490))
+```

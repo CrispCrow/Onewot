@@ -3,6 +3,8 @@
 An opinionated, static typed WotBlitz API wrapper for Python3.
 
 Python >=3.6 are currently supported.
+
+Documentation: [View Here](https://onewot.readthedocs.io/en/latest/)
 </p>
 
 ## Installation
@@ -12,6 +14,14 @@ Install Onewot from PyPi with the following command:
 python -m pip install -U onewot
 # Windows users may need to use this instead...
 py -3 -m pip install -U onewot
+```
+
+----
+
+## Updating
+
+```bash
+pip install --upgrade onewot
 ```
 
 ----
@@ -35,12 +45,6 @@ client = onewot.WOTBClient(application='...', language=onewot.Language.ENGLISH)
 
 print(client.fetch_user(152870490))
 ```
-
-----
-
-## Documentation
-
-Coming soon...
 
 ----
 

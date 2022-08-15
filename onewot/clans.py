@@ -80,7 +80,10 @@ class RecruitingOptions:
 
 
 class RecruitingPolicy(enum.Enum):
-    """Recruiting policy of clan."""
+    """Recruiting policy of clan.
+    
+    Value can be **open** or **restricted**.
+    """
 
     OPEN: typing.Final[str] = 'open'
     RESTRICTED: typing.Final[str] = 'restricted'

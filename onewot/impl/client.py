@@ -54,14 +54,14 @@ class WOTBClient:
 
     Example
     -------
-    Setting up client:
-    ```py
-    import os
 
-    import onewot
+        .. code-block:: python
 
-    client = onewot.WOTBClient(os.environ["APPLICATION_ID"], language=onewot.Language.ENGLISH)
-    ```
+            import os
+
+            import onewot
+
+            client = onewot.WOTBClient(os.environ["APPLICATION_ID"], language=onewot.Language.ENGLISH)
     """
 
     __slots__: typing.Sequence[str] = ('_application_id', '_http')
