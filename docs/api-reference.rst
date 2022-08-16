@@ -19,4 +19,5 @@ Here you will find an index of all the API reference pages for Onewots's differe
    api_references/tournaments
    api_references/achievements
    api_references/snowflakes
+   api_references/languages
    api_references/exceptions

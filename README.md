@@ -2,7 +2,7 @@
 <p>
 An opinionated, static typed WotBlitz API wrapper for Python3.
 
-Python >=3.6 are currently supported.
+Python >=3.8 are currently supported.
 
 Documentation: [View Here](https://onewot.readthedocs.io/en/latest/)
 </p>

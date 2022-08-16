@@ -65,7 +65,7 @@ setuptools.setup(
     author_email=metadata.email,
     license=metadata.license,
     url=metadata.url,
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     packages=setuptools.find_namespace_packages(include=['onewot*']),
     install_requires=parse_requirements_file('requirements.txt'),
     include_package_data=True,
@@ -75,7 +75,8 @@ setuptools.setup(
         'Issue Tracker': metadata.issue_tracker,
     },
     classifiers=[
-    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: Implementation :: CPython',
     'Natural Language :: English',
     'License :: OSI Approved :: MIT License',

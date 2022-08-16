@@ -10,11 +10,11 @@ Onewot
 
 Onewot is an opinionated, static typed WotBlitz API wrapper for Python3.
 
-Python >=3.6 are currently supported.
+Python >=3.8 are currently supported.
 
 Repository: `View on GitHub <https://github.com/CrispCrow/Onewot>`_
 
-If you think you have found a bug or other problem with the library, or you would like to suggest a feature, you should submit an issue on the GitHub repository `here <https://github.com/CrispCrow/Onewot/issues>`_.. Before doing so you should make sure you are on the latest version of the library and check to see if an issue already exists for your bug or feature.
+If you think you have found a bug or other problem with the library, or you would like to suggest a feature, you should submit an issue on the GitHub repository `here <https://github.com/CrispCrow/Onewot/issues>`_. Before doing so you should make sure you are on the latest version of the library and check to see if an issue already exists for your bug or feature.
 
 Contributors:
 -------------
