@@ -19,7 +19,7 @@ If you think you have found a bug or other problem with the library, or you woul
 Contributors:
 -------------
 
-- `Лика#8006 (creator) <https://github.com/CrispCrow>`_
+- `Чёткая ворона#8006 (creator) <https://github.com/CrispCrow>`_
 
 Index:
 ------
