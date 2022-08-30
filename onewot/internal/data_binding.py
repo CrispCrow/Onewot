@@ -38,6 +38,37 @@ CLAN: typing.Final[str] = 'clan'
 
 
 class Language(str, enum.Enum):
+    """Localization for WotBlitz API.
+    
+    Attributes
+    ----------
+    ENGLISH : typing.Final[builtins.str]
+        English localization.
+    RUSSIAN : typing.Final[builtins.str]
+        Russian localization. Set by default.
+    POLISH : typing.Final[builtins.str]
+        Polish localization.
+    GERMAN : typing.Final[builtins.str]
+        German localization.
+    FRENCH : typing.Final[builtins.str]
+        French localization.
+    SPANISH : typing.Final[builtins.str]
+        Spanish localization.
+    CHINESE_SIMPLIFIED: typing.Final[builtins.str]
+        Chinese simplified localization.
+    TRADITIONAL_CHINESE : typing.Final[builtins.str]
+        Traditional Chinese localization.
+    TURKISH : typing.Final[builtins.str]
+        Turkish localization.
+    CZECH : typing.Final[builtins.str]
+        Czech localization.
+    THAILAND : typing.Final[builtins.str]
+        Thailand localization.
+    VIETNAMESE : typing.Final[builtins.str]
+        Vietnamese localization.
+    KOREAN : typing.Final[builtins.str]
+        Korean localization.
+    """
     ENGLISH: typing.Final[str] = 'en'
     RUSSIAN: typing.Final[str] = 'ru'
     POLISH: typing.Final[str] = 'pl'
